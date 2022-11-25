@@ -12,7 +12,11 @@ btns.map(function (btn) {
   // Adding click events to each buttons
 
   btn.addEventListener("click", function (e) {
+
+
     // Using the switch statement to focus on button area.
+
+  
 
     switch (e.target.innerHTML) {
       // if button contains C, the screen should be returned to blank
@@ -33,18 +37,60 @@ btns.map(function (btn) {
 
       //Percentage calculation
 
-      case "%":
+ 
+      
+      // sin configuration
 
-        percentageCalculation()
+   
+      
+      // case "tan" :
 
-        break;
+      //   screenDisplay.innerHTML = (Math.tan(screenDisplay.innerHTML))
+
+       
+
+      //   break
 
       // Mathematical evaluation of items displayed on the screen
 
       case "=":
-        screenDisplay.innerHTML = eval(screenDisplay.innerHTML);
+        try{
 
-        break;
+        
+
+          if(screenDisplay.innerHTML.includes("tan")){
+
+            screenDisplay.innerHTML = (Math.tan(screenDisplay.innerHTML.replace("tan", "")))
+          }
+  
+          if(screenDisplay.innerHTML.includes("cos")){
+  
+            screenDisplay.innerHTML = (Math.cos(screenDisplay.innerHTML.replace("cos", "")))
+          }
+  
+          if(screenDisplay.innerHTML.includes("sin")){
+  
+            screenDisplay.innerHTML = (Math.sin(screenDisplay.innerHTML.replace("sin", "")))
+          }
+  
+          if(screenDisplay.innerHTML.includes("%")){
+  
+            screenDisplay.innerHTML = screenDisplay.innerHTML.replace("%", "")/100
+          }
+          if(screenDisplay.innerHTML){
+
+            screenDisplay.innerHTML = eval(screenDisplay.innerHTML)
+          }
+          
+          break;
+        }
+        catch{
+          screenDisplay.innerHTML = "This calculator cannot perform this operation!!"
+
+          break
+        }
+
+       
 
       // Keep adding current item to the screen
  
@@ -52,13 +98,13 @@ btns.map(function (btn) {
       default:
         screenDisplay.innerHTML += e.target.innerHTML;
     }
+
   });
 });
 
-function percentageCalculation(){
 
-  screenDisplay.innerHTML = screenDisplay.innerHTML/100
 
-}
+
+
 
 
